@@ -1,0 +1,19 @@
+{
+    "name": "zharkov/exampleclient",
+    "type": "library",
+    "authors": [
+        {
+            "name": "konstantin.zharkov",
+            "email": "konstantin.zharkov@sitesoft.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Classes\\": "classes/",
+            "Interfaces\\": "interfaces/",
+            "Tests\\": "tests/"
+        }
+    }
+}
