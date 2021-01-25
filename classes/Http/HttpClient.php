@@ -13,7 +13,8 @@ class HttpClient implements HttpClientInterface
         $this->curl = curl_init();
     }
 
-    private function closeConnection(){
+    private function closeConnection()
+    {
         curl_close($this->curl);
     }
 
