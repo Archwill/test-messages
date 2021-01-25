@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Interfaces;
+namespace Classes;
 
 use Classes\Comment\Comment;
 

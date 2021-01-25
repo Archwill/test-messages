@@ -1,40 +1,36 @@
 <?php
 
-
 namespace Classes;
-
 
 use Classes\Comment\Comment;
 use Classes\Comment\CommentFactory;
 use Classes\Http\HttpClient;
 use Classes\Services\MessageService;
-use Interfaces\MessageRepositoryInterface;
+use Classes\MessageRepositoryInterface;
 
 class MessageRepository implements MessageRepositoryInterface
 {
-    public function getAll()
+    private function initService(): MessageService
     {
         $httpClient = new HttpClient();
-        $messageService = new MessageService($httpClient);
-        $comments = json_decode($messageService->getAll(), true);
+        return new MessageService($httpClient);
+    }
+
+    public function getAll(): array
+    {
+        $comments = json_decode($this->initService()->getAll(), true);
         return array_map(array(CommentFactory::class, "createComment"), $comments);
     }
 
-    public function getById($id)
+    public function getById($id): Comment
     {
-        $comments = $this->getAll();
-        foreach ($comments as $comment){
-            if($comment->id == $id){
-                return $comment;
-            }
-        }
-        return false;
+        $comment = json_decode($this->initService()->getById($id), true);
+        return CommentFactory::createComment($comment);
     }
 
-    public function save(Comment $comment)
+    public function save(Comment $comment): Comment
     {
-        $httpClient = new HttpClient();
-        $messageService = new MessageService($httpClient);
-        return CommentFactory::createComment($messageService->save($comment));
+        $comment = json_decode($this->initService()->save($comment), true);
+        return CommentFactory::createComment($comment);
     }
 }

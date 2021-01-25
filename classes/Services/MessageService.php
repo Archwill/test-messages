@@ -3,7 +3,7 @@
 namespace Classes\Services;
 
 use Classes\Config;
-use Classes\Http\HttpClient;
+use Classes\Http\HttpClientInterface;
 use Classes\Comment\Comment;
 
 class MessageService
@@ -11,7 +11,7 @@ class MessageService
     private $httpClient;
     private $config;
 
-    public function __construct(HttpClient $client)
+    public function __construct(HttpClientInterface $client)
     {
         $this->httpClient = $client;
         $this->config = new Config();
@@ -26,13 +26,19 @@ class MessageService
         }
     }
 
-    public function getAll()
+    public function getById($id): string
+    {
+        $url = $this->config->getUrl("getById", $id);
+        return $this->httpClient->get($url, []);
+    }
+
+    public function getAll(): string
     {
         $url = $this->config->getUrl("getAll");
         return $this->httpClient->get($url, []);
     }
 
-    public function save(Comment $comment)
+    public function save(Comment $comment): string
     {
         $this->validateComment($comment);
 

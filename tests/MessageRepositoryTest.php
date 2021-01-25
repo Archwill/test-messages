@@ -2,8 +2,6 @@
 
 namespace Tests;
 
-include "../vendor/autoload.php";
-
 use Classes\Comment\Comment;
 use Classes\MessageRepository;
 use PHPUnit\Framework\TestCase;

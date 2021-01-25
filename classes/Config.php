@@ -17,15 +17,20 @@ class Config
         ],
         "update" => [
             "command" => "comment",
-            "params" => ["id"]
+            "params" => ["id"],
         ],
+        "getById" => [
+            "command" => "comment",
+            "params" => ["id"],
+        ]
     ];
 
-    public function getUrl($method, $params = false){
+    public function getUrl($method, $params = false): string
+    {
         $url = $this->protocol . "://" .
             $this->address . "/" .
             $this->methods[$method]["command"];
-        if(is_array($params) && count($params) == count($this->methods[$method]["params"])){
+        if (is_array($params) && count($params) == count($this->methods[$method]["params"])) {
             $url .= "/" . implode("/", $params);
         }
         return $url;
