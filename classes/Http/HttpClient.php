@@ -8,7 +8,7 @@ class HttpClient implements HttpClientInterface
 {
     private $curl;
 
-    private function executeQuery($curlOptions)
+    private function executeQuery($curlOptions): string
     {
         $this->curl = curl_init();
         foreach ($curlOptions as $key => $value) {
