@@ -6,7 +6,7 @@ use Classes\Config;
 use Classes\Http\HttpClientInterface;
 use Classes\Comment\Comment;
 
-class MessageService
+class MessageService implements MessageServiceInterface
 {
     private $httpClient;
     private $config;
